@@ -1,0 +1,56 @@
+services:
+  # backend service
+  backend:
+    container_name: micro-orm-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/app
+    restart: on-failure
+    ports:
+      - ${APP_PORT:-8080}:${APP_PORT:-8080}
+    expose:
+      - ${APP_PORT:-8080}
+    networks:
+      - app_network
+
+  # postgres database service
+  database:
+    image: postgres:16.1-alpine3.18
+    container_name: micro-orm-database
+    restart: always
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    ports:
+      - ${DB_PORT:-5432}:5432
+    environment:
+      - POSTGRES_USER=${DB_USER:-postgres}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-admin}
+      - POSTGRES_DB=${DB_NAME:-micro-orm-poc}
+    networks:
+      - app_network
+
+  # pgAdmin
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: micro-orm-pgadmin
+    restart: always
+    volumes:
+      - pg_admin:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@gmail.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    ports:
+      - "8888:80"
+
+volumes:
+  pg_admin: {}
+  pg_data: {}
+
+networks:
+  app_network:
+    driver: bridge
