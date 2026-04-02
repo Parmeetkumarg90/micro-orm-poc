@@ -20,10 +20,11 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@mikro-orm/core": "^6.6.9",
-    "@mikro-orm/nestjs": "^6.1.1",
-    "@mikro-orm/postgresql": "^6.6.9",
-    "@mikro-orm/reflection": "^6.6.9",
+    "@mikro-orm/core": "^7.0.7",
+    "@mikro-orm/migrations": "^7.0.7",
+    "@mikro-orm/nestjs": "^7.0.1",
+    "@mikro-orm/postgresql": "^7.0.7",
+    "@mikro-orm/reflection": "^7.0.7",
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.3",
     "@nestjs/core": "^11.0.1",
@@ -35,7 +36,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.18.0",
-    "@mikro-orm/cli": "^6.6.9",
+    "@mikro-orm/cli": "^7.0.7",
     "@nestjs/cli": "^11.0.0",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.1",
@@ -55,6 +56,7 @@
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.20.0",
     "vitest": "^4.0.18"
@@ -75,5 +77,12 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "mikro-orm": {
+    "preferTs": true,
+    "configPaths": [
+      "./src/infrastructure/database/config/config.ts",
+      "./dist/infrastructure/database/config/config.js"
+    ]
   }
 }

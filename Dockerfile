@@ -1,4 +1,4 @@
-ARG NODE_IMAGE=node:20.15.1-alpine3.20
+ARG NODE_IMAGE=node:22-alpine
 
 FROM $NODE_IMAGE as base
 WORKDIR /app
@@ -18,4 +18,4 @@ COPY --chown=node:node --from=build /app/node_modules ./node_modules
 COPY --chown=node:node --from=build /app/dist ./dist
 COPY --chown=node:node . .
 EXPOSE $APP_PORT
-CMD ["dumb-init", "node", "dist/main"]
+CMD ["dumb-init", "node", "dist/main.js"]

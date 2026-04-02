@@ -46,6 +46,8 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
     ports:
       - "8888:80"
+    networks:
+      - app_network
 
 volumes:
   pg_admin: {}
