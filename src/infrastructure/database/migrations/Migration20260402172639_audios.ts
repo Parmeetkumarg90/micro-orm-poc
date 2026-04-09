@@ -10,6 +10,7 @@ export class Migration20260402172639_audios extends Migration {
 
   override down(): void | Promise<void> {
     this.addSql(`alter table "audios" drop constraint "audios_user_id_foreign";`);
+    this.addSql(`drop table if exists "audios";`);
   }
 
 }

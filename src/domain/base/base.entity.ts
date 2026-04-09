@@ -1,7 +1,9 @@
-import { defineEntity, p } from "@mikro-orm/core";
+import { defineEntity, InferEntityFromProperties, p } from "@mikro-orm/core";
 
-const BaseEntity = defineEntity({
-    class: class Base { },
+export class BaseClass { }
+
+export const BaseEntity = defineEntity({
+    class: BaseClass,
     abstract: true,
     filters: {
         notDeleted: {
@@ -22,4 +24,4 @@ const BaseEntity = defineEntity({
     }
 });
 
-export { BaseEntity };
+export type IBaseEntity = InferEntityFromProperties<typeof BaseEntity["properties"]>;

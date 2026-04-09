@@ -7,6 +7,7 @@ export class Migration20260402172631_users extends Migration {
   }
 
   override down(): void | Promise<void> {
+    this.addSql(`drop table if exists "users";`);
   }
 
 }

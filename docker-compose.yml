@@ -28,7 +28,7 @@ services:
     ports:
       - ${DB_PORT:-5432}:5432
     environment:
-      - POSTGRES_USER=${DB_USER:-postgres}
+      - POSTGRES_USER=${DB_USER:-admin}
       - POSTGRES_PASSWORD=${DB_PASSWORD:-admin}
       - POSTGRES_DB=${DB_NAME:-micro-orm-poc}
     networks:

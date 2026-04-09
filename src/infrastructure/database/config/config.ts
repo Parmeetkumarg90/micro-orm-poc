@@ -1,5 +1,7 @@
 import { Migrator } from "@mikro-orm/migrations";
 import { defineConfig, Options, PostgreSqlDriver } from "@mikro-orm/postgresql";
+import { SeedManager } from "@mikro-orm/seeder";
+require("dotenv").config();
 
 const databaseConfig: Options = defineConfig({
     driver: PostgreSqlDriver,
@@ -11,7 +13,7 @@ const databaseConfig: Options = defineConfig({
     entities: ['dist/domain/**/*.entity.js'],
     entitiesTs: ['src/domain/**/*.entity.ts'],
     debug: true,
-    extensions: [Migrator],
+    extensions: [Migrator,SeedManager],
     migrations: {
         tableName: "micro-orm-migrations",
         path: "dist/infrastructure/database/migrations",
@@ -21,6 +23,11 @@ const databaseConfig: Options = defineConfig({
         fileName(timestamp, name) {
             return `Migration${timestamp}_${name}`;
         },
+    },
+    seeder:{
+        path: "dist/infrastructure/database/seeders",
+        pathTs: "src/infrastructure/database/seeders",
+        fileName:(className:string)=>className,
     }
 });
 
