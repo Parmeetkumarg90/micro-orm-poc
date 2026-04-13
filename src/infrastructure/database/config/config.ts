@@ -11,13 +11,13 @@ const databaseConfig: Options = defineConfig({
     user: process.env.DB_USER ?? "admin",
     password: process.env.DB_PASSWORD ?? "admin",
     entities: ['dist/domain/**/*.entity.js'],
-    entitiesTs: ['src/domain/**/*.entity.ts'],
+    // entitiesTs: ['src/domain/**/*.entity.ts'], // keep one at a time
     debug: true,
     extensions: [Migrator,SeedManager],
     migrations: {
         tableName: "micro-orm-migrations",
         path: "dist/infrastructure/database/migrations",
-        pathTs: "src/infrastructure/database/migrations",
+        // pathTs: "src/infrastructure/database/migrations", // keep one at a time
         transactional: true,
         dropTables: false,
         fileName(timestamp, name) {
@@ -25,8 +25,9 @@ const databaseConfig: Options = defineConfig({
         },
     },
     seeder:{
+        defaultSeeder:"DatabaseSeeder",
         path: "dist/infrastructure/database/seeders",
-        pathTs: "src/infrastructure/database/seeders",
+        // pathTs: "src/infrastructure/database/seeders", // keep one at a time
         fileName:(className:string)=>className,
     }
 });
