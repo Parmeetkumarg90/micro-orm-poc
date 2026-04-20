@@ -26,7 +26,7 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
     ports:
-      - ${DB_PORT:-5432}:5432
+      - ${DB_PORT:-5433}:5432
     environment:
       - POSTGRES_USER=${DB_USER:-admin}
       - POSTGRES_PASSWORD=${DB_PASSWORD:-admin}
@@ -56,3 +56,5 @@ volumes:
 networks:
   app_network:
     driver: bridge
+
+# create network using this command to run app: docker network create app_network

@@ -1,18 +1,24 @@
-import { defineEntity, InferEntity, InferEntityFromProperties, p } from "@mikro-orm/core";
-import { BaseClass, BaseEntity } from "../base/base.entity";
-import { AudioEntity } from "../audio/audio.entity";
+import { defineEntity, InferEntity, p } from "@mikro-orm/core";
+import { AudioClass } from "../audio/audio.entity";
+import { BaseEntity } from "../base/base.entity";
+
+export class UserClass extends BaseEntity.class {}
 
 export const UserEntity = defineEntity({
-    name: "UserEntity",
-    tableName: "users",
-    class: class UserClass extends BaseClass{},
-    extends: BaseEntity,
-    properties: {
-        firebaseUid: p.string(),
-        name: p.string(),
-        profileUrl: p.string().nullable(),
-        audios: () => p.oneToMany(AudioEntity).eager(true).mappedBy("user"),
-    }
+  name: "UserClass",
+  tableName: "users",
+  class: UserClass,
+  extends: BaseEntity,
+  properties: {
+    firebaseUid: p.string(),
+    name: p.string(),
+    profileUrl: p.string().nullable(),
+    audios: () =>
+      p
+        .oneToMany(AudioClass)
+        .lazy()
+        .mappedBy("user" as any),
+  },
 });
 
 export type IUserEntity = InferEntity<typeof UserEntity>;
