@@ -1,0 +1,10 @@
+import { EntityName, EntityRepository, SqlEntityManager } from "@mikro-orm/postgresql";
+import { Injectable } from "@nestjs/common";
+import { UserClass } from "src/domain/user/user.entity";
+
+@Injectable()
+export class UserRepository extends EntityRepository<UserClass>{
+    constructor(em: SqlEntityManager, entityName: EntityName<UserClass>){
+        super(em,entityName);
+    }
+}
