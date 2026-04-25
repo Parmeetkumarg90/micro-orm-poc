@@ -21,8 +21,8 @@
     "migration:create": "npx mikro-orm migration:create --initial",
     "migration:up": "npx mikro-orm migration:up",
     "migration:down": "npx mikro-orm migration:down",
-    "migration:down-all":"npx mikro-orm migration:down --to 0",
-    "seed:up":"npx mikro-orm seeder:run"
+    "migration:down-all": "npx mikro-orm migration:down --to 0",
+    "seed:up": "npx mikro-orm seeder:run"
   },
   "dependencies": {
     "@mikro-orm/core": "^7.0.7",
@@ -34,7 +34,10 @@
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.3",
     "@nestjs/core": "^11.0.1",
+    "@nestjs/cqrs": "^11.0.3",
     "@nestjs/platform-express": "^11.0.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
     "dotenv": "^17.4.1",
     "fastify": "^5.8.1",
     "reflect-metadata": "^0.2.2",
