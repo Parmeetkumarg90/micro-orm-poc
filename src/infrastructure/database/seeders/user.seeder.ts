@@ -1,8 +1,7 @@
-import { EntityManager, Dictionary, RequiredEntityData } from "@mikro-orm/core";
+import { Dictionary, EntityManager, RequiredEntityData } from "@mikro-orm/core";
 import { fs } from "@mikro-orm/core/fs-utils";
 import { Seeder } from "@mikro-orm/seeder";
 import { ConfigService } from "@nestjs/config";
-import type { IUserEntity } from "../../../domain/user/user.entity";
 import { UserClass } from "../../../domain/user/user.entity";
 
 export class UserSeeder extends Seeder {
@@ -13,7 +12,7 @@ export class UserSeeder extends Seeder {
     em: EntityManager,
     context?: Dictionary | undefined,
   ): Promise<void> {
-    const fileContent: RequiredEntityData<IUserEntity>[] = fs.readJSONSync(
+    const fileContent: RequiredEntityData<UserClass>[] = fs.readJSONSync(
       this.userSeedFilePath,
     );
     for (const user of fileContent) {
