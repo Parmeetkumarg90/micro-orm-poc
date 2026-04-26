@@ -1,9 +1,4 @@
-import {
-  defineEntity,
-  InferEntity,
-  InferEntityFromProperties,
-  p,
-} from "@mikro-orm/core";
+import { defineEntity, InferEntity, p } from "@mikro-orm/core";
 
 export class BaseClass {}
 

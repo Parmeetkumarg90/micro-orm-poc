@@ -3,8 +3,8 @@ import { Injectable } from "@nestjs/common";
 import { AudioClass } from "src/domain/audio/audio.entity";
 
 @Injectable()
-export class AudioRepository extends EntityRepository<AudioClass>{
-    constructor(em: EntityManager){
-        super(em,AudioClass);
-    }
+export class AudioRepository extends EntityRepository<AudioClass> {
+  constructor(em: EntityManager) {
+    super(em, AudioClass);
+  }
 }

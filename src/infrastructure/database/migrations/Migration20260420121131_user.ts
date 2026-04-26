@@ -8,9 +8,17 @@ export class Migration20260420121131 extends Migration {
     this.addSql(
       `alter table "users" add constraint "users_uuid_unique" unique ("uuid");`,
     );
+
+    this.addSql(
+      `alter table "users" add constraint "users_firebase_uid_unique" unique ("firebase_uid");`,
+    );
   }
 
   override down(): void | Promise<void> {
+    this.addSql(`alter table "users" drop constraint "users_uuid_unique";`);
+    this.addSql(
+      `alter table "users" drop constraint "users_firebase_uid_unique";`,
+    );
     this.addSql(`drop table if exists "users";`);
   }
 }

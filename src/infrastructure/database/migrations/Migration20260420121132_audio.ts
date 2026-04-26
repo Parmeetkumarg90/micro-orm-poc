@@ -12,9 +12,15 @@ export class Migration20260420121132 extends Migration {
     this.addSql(
       `alter table "audios" add constraint "audios_user_id_foreign" foreign key ("user_id") references "users" ("id");`,
     );
+    this.addSql(
+      `alter table "audios" add constraint "audios_audio_url_unique" unique ("audio_url");`,
+    );
   }
 
   override down(): void | Promise<void> {
+    this.addSql(
+      `alter table "audios" drop constraint "audios_audio_url_unique";`,
+    );
     this.addSql(
       `alter table "audios" drop constraint "audios_user_id_foreign";`,
     );
