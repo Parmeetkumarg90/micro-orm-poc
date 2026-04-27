@@ -1,7 +1,12 @@
 Topics i will learn and implement in this repository ->
-i. Entity with discovery types - done
-ii. Relations or modelling - done
-iii. Repository Pattern - done
+i. Entity with discovery types -> An Entity is a distinct, identifiable object in a system that has its own identity and can store data about itself through attributes.
+In simple terms: Entity = “Thing with identity + data”. Instead of explicitly listing entities, we can use glob patterns to discover entities automatically. - done
+
+ii. Relations or modelling -> Defining how entities (tables) are connected using keys, so the database can enforce integrity and support efficient querying. Creating relations between two entities and also making joins like one-to-many, many-to-one, one-to-one, many-to-many. - done
+
+iii. Repository Pattern -> Repository Pattern is an abstraction layer that sits between your domain/business logic and the data access layer, providing a unified interface to perform CRUD operations while hiding the actual data source and persistence logic.
+In simple language instead of relying on database directly we will add a layer between database and business logic to ensure that both remain separated and will communicate with each other only through this layer. - done
+
 iv. Indexing, constraints and querying - done
 v. Json properties
 vi. Querying and loading strategies
