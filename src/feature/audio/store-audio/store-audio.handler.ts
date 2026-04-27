@@ -15,7 +15,7 @@ export class StoreAudioHandler implements IQueryHandler<string> {
     const audios: any = [];
     const users = await this.userRepo.findAll();
     console.log("🚀 ~ users:", users);
-    for (let user of users) {
+    for (const user of users) {
       const audio = new AudioClass();
       audio.user = user;
       audio.audioUrl = `${user.name}` + Date.now();
