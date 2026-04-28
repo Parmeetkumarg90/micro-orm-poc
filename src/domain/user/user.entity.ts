@@ -1,10 +1,18 @@
 import { defineEntity, InferEntity, p } from "@mikro-orm/core";
 import { AudioClass } from "../audio/audio.entity";
-import { BaseEntity } from "../base/base.entity";
+import { BaseClass, BaseEntity } from "../base/base.entity";
+
+export class UserClass extends BaseClass {
+  firebaseUid!: string;
+  name!: string;
+  profileUrl!: string;
+  audios!: AudioClass[];
+}
 
 export const UserEntity = defineEntity({
   name: "UserClass",
   tableName: "users",
+  class: UserClass,
   extends: BaseEntity,
   properties: {
     firebaseUid: p.string().unique(),
@@ -13,6 +21,5 @@ export const UserEntity = defineEntity({
     audios: () => p.oneToMany(AudioClass).lazy().mappedBy("user"),
   },
 });
-export class UserClass extends UserEntity.class {}
 
 export type IUserEntity = InferEntity<typeof UserEntity>;
