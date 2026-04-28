@@ -1,6 +1,20 @@
 import { defineEntity, InferEntity, p } from "@mikro-orm/core";
 
-export class BaseClass {}
+export class BaseClass {
+  id!: number;
+  uuid!: string;
+  created_at!: Date;
+  updated_at!: Date;
+  deleted_at?: Date | null;
+
+  softDelete() {
+    this.deleted_at = new Date();
+  }
+
+  restore() {
+    this.deleted_at = null;
+  }
+}
 
 export const BaseEntity = defineEntity({
   class: BaseClass,

@@ -14,7 +14,9 @@ vii. Migrations and seeding - done
 viii. Materialized View
 ix. Transactions
 x. Locking Mechanisms
+xi. Context -> Request Context in MikroORM is a mechanism using Node.js AsyncLocalStorage to isolate the Identity Map and EntityManager per request, preventing data leakage between concurrent operations.  It ensures that each HTTP request or asynchronous task maintains a unique, clean state for entity tracking and caching. For non-HTTP scenarios like queue handlers or scheduled tasks, you should use the @CreateRequestContext() decorator on top-level methods to ensure a dedicated context is created. Alternatively, you can manually fork the EntityManager using orm.em.fork() to create a new context with its own identity map.
 
-Notes: 
+Notes:
+
 1. make all path in single environment for seeding, migration like in build or ts for easier use and also set path of ts for migration creation file so that never lost in recreation of build
 2. upsert, upsertmany only works when entity contain unique property as it will first check if present otherwise create one and if not present then have to use persist(make an entity for db and flag them as dirty) and flush(sync with db)

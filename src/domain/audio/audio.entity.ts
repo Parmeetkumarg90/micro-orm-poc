@@ -1,10 +1,17 @@
 import { defineEntity, InferEntity, p } from "@mikro-orm/core";
-import { BaseEntity } from "../base/base.entity";
+import { BaseClass, BaseEntity } from "../base/base.entity";
 import { UserClass } from "../user/user.entity";
+
+export class AudioClass extends BaseClass {
+  user!: UserClass;
+  description!: string;
+  audioUrl!: string;
+}
 
 export const AudioEntity = defineEntity({
   name: "AudioClass",
   tableName: "audios",
+  class: AudioClass,
   extends: BaseEntity,
   properties: {
     user: () => p.manyToOne(UserClass).eager(true),
@@ -12,6 +19,5 @@ export const AudioEntity = defineEntity({
     audioUrl: p.string().unique(),
   },
 });
-export class AudioClass extends AudioEntity.class {}
 
 export type IAudioEntity = InferEntity<typeof AudioEntity>;
