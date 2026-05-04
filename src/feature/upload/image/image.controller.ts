@@ -4,16 +4,19 @@ import {
   UploadedFiles,
   UseInterceptors,
 } from "@nestjs/common";
-import { FilesInterceptor } from "@nestjs/platform-express";
+import { imageUploadInterceptor } from "src/infrastructure/http/interceptors/upload/image-upload";
 
 @Controller({})
 export class ImageUploadController {
   constructor() {}
 
   @Post("images")
-  @UseInterceptors(FilesInterceptor("images"))
+  @UseInterceptors(imageUploadInterceptor())
   uploadImages(
     @UploadedFiles()
     files: Express.Multer.File[],
-  ) {}
+  ) {
+    console.log("🚀 ~ uploadImages ~ files:", files);
+    return "File uploaded success";
+  }
 }
