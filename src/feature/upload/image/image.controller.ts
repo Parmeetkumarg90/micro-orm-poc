@@ -14,9 +14,8 @@ export class ImageUploadController {
   @UseInterceptors(imageUploadInterceptor())
   uploadImages(
     @UploadedFiles()
-    files: Express.Multer.File[],
+    files: any[],
   ) {
-    console.log("🚀 ~ uploadImages ~ files:", files);
     return "File uploaded success";
   }
 }

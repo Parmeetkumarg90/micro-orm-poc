@@ -25,10 +25,10 @@
     "seed:up": "npx mikro-orm seeder:run"
   },
   "dependencies": {
-    "@mikro-orm/core": "^7.0.7",
-    "@mikro-orm/migrations": "^7.0.7",
+    "@mikro-orm/core": "^7.0.15",
+    "@mikro-orm/migrations": "^7.0.15",
     "@mikro-orm/nestjs": "^7.0.1",
-    "@mikro-orm/postgresql": "^7.0.7",
+    "@mikro-orm/postgresql": "^7.0.15",
     "@mikro-orm/reflection": "^7.0.7",
     "@mikro-orm/seeder": "^7.0.8",
     "@nestjs/common": "^11.0.1",
