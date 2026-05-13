@@ -1,18 +1,18 @@
-import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
+import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { AudioClass } from "src/domain/audio/audio.entity";
 import { AudioRepository } from "src/infrastructure/repository/audios.repository";
 import { UserRepository } from "src/infrastructure/repository/user.repository";
-import { StoreAudioQuery } from "./store-audio.query";
+import { StoreAudioCommand } from "./store-audio.command";
 
-@QueryHandler(StoreAudioQuery)
-export class StoreAudioHandler implements IQueryHandler<string> {
+@CommandHandler(StoreAudioCommand)
+export class StoreAudioHandler implements ICommandHandler<StoreAudioCommand> {
   constructor(
     private readonly audioRepo: AudioRepository,
     private readonly userRepo: UserRepository,
   ) {}
 
-  async execute(query: string): Promise<string> {
-    const audios: any = [];
+  async execute(command: StoreAudioCommand): Promise<string> {
+    const audios: AudioClass[] = [];
     const users = await this.userRepo.findAll();
     for (const user of users) {
       const audio = new AudioClass();
