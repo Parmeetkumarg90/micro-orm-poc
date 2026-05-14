@@ -10,6 +10,14 @@ const databaseConfig: Options = defineConfig({
     process.env.DB_PORT ??
       (process.env.DB_HOST === "localhost" ? "5433" : "5432"),
   ),
+  driverOptions: {
+    connection: {
+      ssl: {
+        rejectUnauthorized: true,
+        ca: process.env.DB_CA_CERTIFICATE,
+      },
+    },
+  },
   host: process.env.DB_HOST ?? "database",
   user: process.env.DB_USER ?? "admin",
   password: process.env.DB_PASSWORD ?? "admin",
