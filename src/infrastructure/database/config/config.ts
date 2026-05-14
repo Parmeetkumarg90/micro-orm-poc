@@ -14,7 +14,7 @@ const databaseConfig: Options = defineConfig({
     connection: {
       ssl: {
         rejectUnauthorized: true,
-        ca: process.env.DB_CA_CERTIFICATE,
+        ca: process.env.DB_CA_CERTIFICATE?.replace(/\\n/g, "\n"),
       },
     },
   },
