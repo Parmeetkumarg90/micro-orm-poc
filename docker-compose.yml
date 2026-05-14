@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: base
+      target: production
     tty: true
     stdin_open: true
     volumes:
